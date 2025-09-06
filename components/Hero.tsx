@@ -1,10 +1,16 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Download, Smartphone, Play } from "lucide-react"
-import Image from "next/image"
+import { Download } from "lucide-react"
+import { IPhoneMockup, IPhoneMockupDark } from "@/components/ui/iphone-mockup"
+import { VideoModal, WatchDemoButton } from "@/components/ui/video-modal"
+import { useTheme } from "next-themes"
 
 export default function Hero() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false)
+  const { theme } = useTheme()
+  
   return (
     <section id="home" className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Background decoration */}
@@ -39,15 +45,10 @@ export default function Hero() {
                 <Download className="mr-2 h-5 w-5" />
                 Download App
               </Button>
-              <Button 
-                variant="outline" 
+              <WatchDemoButton 
+                onClick={() => setIsVideoOpen(true)}
                 size="lg"
-                className="border-2 border-teal-500 text-teal-600 dark:text-teal-400 hover:bg-teal-50 dark:hover:bg-teal-950 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105"
-                onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Play className="mr-2 h-4 w-4" />
-                Watch Demo
-              </Button>
+              />
             </div>
 
             {/* Trust indicators */}
@@ -67,114 +68,70 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right content - App Screenshots */}
+          {/* Right content - iPhone Screenshots */}
           <div className="relative flex justify-center lg:justify-end">
-            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
-              {/* Dashboard Screenshot */}
-              <div className="relative group animate-fade-in">
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-600 rounded-3xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
-                <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-all duration-300">
-                  <div className="w-64 h-80 bg-gradient-to-br from-teal-50 to-blue-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl overflow-hidden relative">
-                    {/* Mock Dashboard Content */}
-                    <div className="p-4 space-y-4">
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200">Dashboard</h3>
-                        <div className="w-6 h-6 bg-teal-500 rounded-full"></div>
-                      </div>
-                      <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-xl p-4 text-white">
-                        <p className="text-xs mb-1">Good morning, Kevin! 🎯</p>
-                        <p className="text-lg font-bold">You're doing great!</p>
-                        <div className="flex justify-between mt-3 text-xs">
-                          <div className="text-center">
-                            <div className="font-bold">3</div>
-                            <div>Active</div>
-                          </div>
-                          <div className="text-center">
-                            <div className="font-bold">2</div>
-                            <div>Due</div>
-                          </div>
-                          <div className="text-center">
-                            <div className="font-bold">5</div>
-                            <div>Taken</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-gray-700 rounded-lg">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
-                              <div className="w-4 h-4 bg-purple-500 rounded"></div>
-                            </div>
-                            <div>
-                              <div className="text-xs font-medium text-gray-800 dark:text-gray-200">Medications</div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400">0 Active prescriptions</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-gray-700 rounded-lg">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
-                              <div className="w-4 h-4 bg-blue-500 rounded"></div>
-                            </div>
-                            <div>
-                              <div className="text-xs font-medium text-gray-800 dark:text-gray-200">Symptoms</div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400">19 Active symptoms</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <div className="relative flex flex-col md:flex-row gap-8 items-center">
+              {/* Primary iPhone - Dashboard */}
+              <div className="relative group animate-fade-in transform hover:scale-105 transition-all duration-500">
+                <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/20 to-blue-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {theme === 'dark' ? (
+                  <IPhoneMockupDark 
+                    screenshot="/dashboard.png" 
+                    alt="Sym Health Dashboard" 
+                    size="lg"
+                    className="relative z-10 drop-shadow-2xl"
+                  />
+                ) : (
+                  <IPhoneMockup 
+                    screenshot="/dashboard.png" 
+                    alt="Sym Health Dashboard" 
+                    size="lg"
+                    className="relative z-10 drop-shadow-2xl"
+                  />
+                )}
+                <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sm text-gray-600 dark:text-gray-400 font-medium bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-3 py-1 rounded-full">
+                  Dashboard
                 </div>
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 dark:text-gray-400 font-medium">Dashboard</div>
               </div>
 
-              {/* Login Screenshot */}
-              <div className="relative group animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
-                <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-all duration-300">
-                  <div className="w-64 h-80 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl overflow-hidden relative">
-                    {/* Mock Login Content */}
-                    <div className="p-6 space-y-6 flex flex-col justify-center h-full">
-                      <div className="text-center">
-                        <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-600 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                          <span className="text-white font-bold text-xl">S</span>
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-2">Welcome Back to SYM</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Sign in to continue your health journey</p>
-                      </div>
-                      
-                      <div className="space-y-4">
-                        <div className="bg-white dark:bg-gray-700 rounded-lg p-3">
-                          <div className="text-xs text-teal-600 dark:text-teal-400 mb-1">Email</div>
-                          <div className="text-sm text-gray-800 dark:text-gray-200">domain277@gmail.com</div>
-                        </div>
-                        <div className="bg-white dark:bg-gray-700 rounded-lg p-3">
-                          <div className="text-xs text-teal-600 dark:text-teal-400 mb-1">Password</div>
-                          <div className="text-sm text-gray-400">••••••••••3</div>
-                        </div>
-                        <button className="w-full bg-gradient-to-r from-teal-500 to-blue-600 text-white py-3 rounded-lg font-medium text-sm">
-                          Sign In
-                        </button>
-                        <div className="text-center">
-                          <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">or continue with</div>
-                          <button className="flex items-center justify-center w-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 py-2 rounded-lg text-sm">
-                            <span className="text-gray-700 dark:text-gray-300">Continue with Google</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              {/* Secondary iPhone - Medication Tracking */}
+              <div className="relative group animate-fade-in transform hover:scale-105 transition-all duration-500 md:-ml-8 lg:-ml-12" style={{ animationDelay: '0.3s' }}>
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {theme === 'dark' ? (
+                  <IPhoneMockupDark 
+                    screenshot="/login.png" 
+                    alt="Sym Health Medication Tracking" 
+                    size="md"
+                    className="relative z-10 drop-shadow-2xl md:mt-8"
+                  />
+                ) : (
+                  <IPhoneMockup 
+                    screenshot="/login.png" 
+                    alt="Sym Health Medication Tracking" 
+                    size="md"
+                    className="relative z-10 drop-shadow-2xl md:mt-8"
+                  />
+                )}
+                <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sm text-gray-600 dark:text-gray-400 font-medium bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-3 py-1 rounded-full">
+                  Medications
                 </div>
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 dark:text-gray-400 font-medium">Login</div>
               </div>
               
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-teal-500 rounded-full opacity-20 animate-pulse"></div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-blue-500 rounded-full opacity-20 animate-pulse delay-1000"></div>
+              <div className="absolute -top-8 -right-8 w-24 h-24 bg-gradient-to-br from-teal-400 to-blue-500 rounded-full opacity-10 animate-pulse"></div>
+              <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-10 animate-pulse delay-1000"></div>
+              <div className="absolute top-1/2 right-0 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-10 animate-pulse delay-500"></div>
             </div>
           </div>
         </div>
+        
+        {/* Video Modal */}
+        <VideoModal 
+          isOpen={isVideoOpen}
+          onClose={() => setIsVideoOpen(false)}
+          videoId="dQw4w9WgXcQ"
+          title="Sym Health App Demo"
+        />
         
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
