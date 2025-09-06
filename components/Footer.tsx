@@ -65,11 +65,11 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Legal</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="https://symhealth.com/privacy" className="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1">Privacy Policy</a></li>
+              <li><a href="/privacy" className="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1">Privacy Policy</a></li>
+              <li><a href="/marketing" className="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1">Marketing Info</a></li>
               <li><a href="https://symhealth.com/terms" className="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1">Terms of Service</a></li>
               <li><a href="https://symhealth.com/hipaa" className="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1">HIPAA Compliance</a></li>
               <li><a href="https://symhealth.com/security" className="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1">Security</a></li>
-              <li><a href="https://symhealth.com/cookies" className="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1">Cookie Policy</a></li>
             </ul>
           </div>
         </div>
