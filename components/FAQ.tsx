@@ -85,13 +85,13 @@ export default function FAQ() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="https://symhealth.com/contact"
+                href="/support"
                 className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors"
               >
                 Contact Support
               </a>
               <a 
-                href="https://symhealth.com/help"
+                href="/support"
                 className="inline-flex items-center justify-center px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-colors"
               >
                 Help Center

@@ -118,6 +118,17 @@ export default function PrivacyPolicy() {
                 <li>Request restriction of data processing</li>
                 <li>File a complaint with relevant data protection authorities</li>
               </ul>
+              <div className="mt-4 p-4 bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-800 rounded-lg">
+                <p className="text-sm text-teal-800 dark:text-teal-200 mb-2">
+                  <strong>Take Control:</strong> Manage your privacy preferences and data directly from our Privacy Choices page.
+                </p>
+                <a 
+                  href="/privacy-choices" 
+                  className="inline-block text-sm font-semibold text-teal-600 dark:text-teal-400 hover:underline"
+                >
+                  Go to Privacy Choices →
+                </a>
+              </div>
             </section>
 
             <section className="space-y-4">
@@ -168,7 +179,7 @@ export default function PrivacyPolicy() {
                 123 Health Street, Suite 100<br />
                 San Francisco, CA 94105<br />
                 United States</p>
-                <p className="text-muted-foreground"><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p className="text-muted-foreground"><strong>Phone:</strong> +1 (208) 353-7695</p>
               </div>
             </section>
 
