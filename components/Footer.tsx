@@ -36,7 +36,7 @@ export default function Footer() {
               Privacy
             </motion.a>
             <motion.a
-              href="https://symhealth.com/terms"
+              href="/marketing"
               className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-200"
               whileHover={{ y: -2 }}
             >
